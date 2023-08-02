@@ -31,14 +31,19 @@
         // Initialize arrays to store agents and staff data
         const agents = [];
         const staff = [];
+        const agentm = [];
+        const staffm = [];
 
         // Group agents based on their roles (agent or staff)
         Object.entries(agentsData).forEach(([agentId, agent]) => {
             const agentInfo = [agentId, agent.agentName, agent.role];
+            const agentInfoM = [agentId, agent.agentName, agent.role];
             if (agent.role === "agent") {
-            agents.push(agentInfo);
+                agents.push(agentInfo);
+                agentm.push(agentInfoM);
             } else if (agent.role === "staff") {
-            staff.push(agentInfo);
+                staff.push(agentInfo);
+                staffm.push(agentInfoM);
             }
         });
 
@@ -46,24 +51,48 @@
         const agentsTable = $('#agent').DataTable({
             data: agents,
             "responsive": true, "lengthChange": false, "autoWidth": false,
-        })
+        });
+        
+        const agentsTableM = $('#agent_mobile').DataTable({
+            data: agentm,
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+        });
+            agentsTableM.column(0).visible(false);
+            
 
         // Initialize DataTables for staff table
         const staffTable = $('#staff').DataTable({
             data: staff,
             "responsive": true, "lengthChange": false, "autoWidth": false,
         });
+            
+        const staffTableM = $('#staff_mobile').DataTable({
+            data: staffm,
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+        });
+            staffTableM.column(0).visible(false);
+            
 
         // Add click event listener to agents table cells to show modal with agent ID
         $('#agent tbody').on('click', 'td', function () {
             const agentId = agentsTable.row($(this).closest('tr')).data()[0];
             showModal(agentId);
         });
+            
+        $('#agent_mobile tbody').on('click', 'td', function () {
+            const agentId = agentsTableM.row($(this).closest('tr')).data()[0];
+            showMeModal(agentId);
+        });
 
         // Add click event listener to staff table cells to show modal with agent ID
         $('#staff tbody').on('click', 'td', function () {
             const agentId = staffTable.row($(this).closest('tr')).data()[0];
             showModal(agentId);
+        });
+        
+        $('#staff_mobile tbody').on('click', 'td', function () {
+            const agentId = staffTableM.row($(this).closest('tr')).data()[0];
+            showMeModal(agentId);
         });
 
         })
@@ -73,6 +102,14 @@
     }
 
     function showModal(agentId) {
+        // Replace "myModal" with the ID of your modal element in the HTML
+        const modalElement = $("#modal-xl");
+        modalElement.find("modal-body").text(`Agent ID: ${agentId}`);
+        modalElement.modal("show");
+        loadAgentURLTable(agentId);
+    }
+
+    function showMeModal(agentId) {
         // Replace "myModal" with the ID of your modal element in the HTML
         const modalElement = $("#modal-xl");
         modalElement.find("modal-body").text(`Agent ID: ${agentId}`);
@@ -327,9 +364,6 @@
     agentsRef.once("value")
     .then(snapshot => {
         const agents = snapshot.val();
-
-
-
         let totalFormsSubmitted = 0;
 
         // Convert agents object to an array for sorting
@@ -412,6 +446,8 @@
         headerCell3.textContent = "Link Status";
         headerCell4.textContent = "Token Status";
 
+        headerCell1.classList.add('hide-column-mobile');
+            
         headerRow.appendChild(headerCell1);
         headerRow.appendChild(headerCell2);
         headerRow.appendChild(headerCell3);
@@ -427,8 +463,7 @@
         document.getElementById("total-Tokens").innerHTML = 0;
         document.getElementById("total-Active-Tokens").innerHTML = 0;
         document.getElementById("total-Unverified-Tokens").innerHTML = 0;
-        
-
+    
 
         Object.values(urls).forEach(url => {
 
@@ -455,6 +490,8 @@
             linkStatusCell.textContent = url.linkStatus;
             tokenStatusCell.textContent = url.tokenStatus;
 
+            urlCell.classList.add('hide-column-mobile');
+
             urlRow.appendChild(urlCell);
             urlRow.appendChild(candidateNameCell);
             urlRow.appendChild(linkStatusCell);
@@ -464,7 +501,7 @@
             
         });
         
-        urlTableContainer.appendChild(urlTable);
+            urlTableContainer.appendChild(urlTable);
         })
         .catch(error => {
         console.log("Error retrieving URLs from Firebase:", error);
