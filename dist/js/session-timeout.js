@@ -1,20 +1,20 @@
 // Set the time (in milliseconds) after which the user will be automatically logged out
-var logoutTime = 60 * 10 * 1000; // 30 minutes
+var logoutTime = 30 * 60 * 1000; // 30 minutes
 
 // Start the logout timer
-var logoutTimer = setTimeout(logout(), logoutTime);
+var logoutTimer = setTimeout(logout, logoutTime);
 
 console.log(logoutTime);
 
 // If the user interacts with the page, reset the timer
 document.addEventListener("mousemove", function() {
   clearTimeout(logoutTimer);
-  logoutTimer = setTimeout(logout(), logoutTime);
+  logoutTimer = setTimeout(logout, logoutTime);
 });
 
 document.addEventListener("keydown", function() {
   clearTimeout(logoutTimer);
-  logoutTimer = setTimeout(logout(), logoutTime);
+  logoutTimer = setTimeout(logout, logoutTime);
 });
 
 function logout() {
