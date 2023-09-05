@@ -454,8 +454,8 @@
         const headerRow = document.createElement("tr");
         const headerRowm = document.createElement("tr");
         const headerCell1 = document.createElement("th");
-        const headerCell2 = document.createElement("th");
-        const headerCell3 = document.createElement("th");
+        // const headerCell2 = document.createElement("th");
+        // const headerCell3 = document.createElement("th");
         const headerCell4 = document.createElement("th");
         const headerCell5 = document.createElement("th");
 
@@ -466,8 +466,8 @@
         headerCell5.textContent = "Created At";
 
         headerRow.appendChild(headerCell1);
-        headerRow.appendChild(headerCell2);
-        headerRow.appendChild(headerCell3);
+        // headerRow.appendChild(headerCell2);
+        // headerRow.appendChild(headerCell3);
         headerRow.appendChild(headerCell4);
         headerRow.appendChild(headerCell5);
 
@@ -518,8 +518,8 @@
             tokenCreatedAtCell.textContent = url.createdAt;
 
             urlRow.appendChild(urlCell);
-            urlRow.appendChild(candidateNameCell);
-            urlRow.appendChild(linkStatusCell);
+            // urlRow.appendChild(candidateNameCell);
+            // urlRow.appendChild(linkStatusCell);
             urlRow.appendChild(tokenStatusCell);
             urlRow.appendChild(tokenCreatedAtCell);
 
