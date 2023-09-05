@@ -365,6 +365,7 @@
     // Load URL table for a specific agent
     function loadAgentURLTable(agentId, agentName) {
     const urlTableContainer = document.getElementById("urlTable");
+    const urlTableContainerm = document.getElementById("urlTablem");
 
 
     agentsRef.once("value")
@@ -434,6 +435,10 @@
     while (urlTableContainer.firstChild) {
         urlTableContainer.firstChild.remove();
     }
+
+        while (urlTableContainerm.firstChild) {
+            urlTableContainerm.firstChild.remove();
+        }
     
     // Load agent-specific URL table
     const agentURLsRef = agentsRef.child(agentId).child("tokens");
@@ -443,8 +448,11 @@
 
         // Generate URL table
         const urlTable = document.createElement("table");
-        urlTable.setAttribute('class','table table-gray text-black'); 
+        const urlTablem = document.createElement("table");
+        urlTable.setAttribute('class','table table-gray text-black');
+        urlTablem.setAttribute('class','table table-gray text-black');
         const headerRow = document.createElement("tr");
+        const headerRowm = document.createElement("tr");
         const headerCell1 = document.createElement("th");
         const headerCell2 = document.createElement("th");
         const headerCell3 = document.createElement("th");
@@ -463,7 +471,11 @@
         headerRow.appendChild(headerCell4);
         headerRow.appendChild(headerCell5);
 
+        headerRowm.appendChild(headerCell2);
+        headerRowm.appendChild(headerCell4);
+
         urlTable.appendChild(headerRow);
+        urlTablem.appendChild(headerRowm);
 
         totalTokens = 0;
         activeTokens = 0;
@@ -492,6 +504,7 @@
         }
 
             const urlRow = document.createElement("tr");
+            const urlRowm = document.createElement("tr");
             const urlCell = document.createElement("td");
             const candidateNameCell = document.createElement("td");
             const linkStatusCell = document.createElement("td");
@@ -510,11 +523,16 @@
             urlRow.appendChild(tokenStatusCell);
             urlRow.appendChild(tokenCreatedAtCell);
 
+            urlRowm.appendChild(candidateNameCell);
+            urlRowm.appendChild(tokenStatusCell);
+
             urlTable.appendChild(urlRow);
-            
+            urlTablem.appendChild(urlRowm);
+
         });
         
         urlTableContainer.appendChild(urlTable);
+        urlTableContainerm.appendChild(urlTablem);
         })
         .catch(error => {
         console.log("Error retrieving URLs from Firebase:", error);
