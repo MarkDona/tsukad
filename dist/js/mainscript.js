@@ -115,10 +115,11 @@
     
     function showMeModal(agentId, agentName) {
         // Replace "myModal" with the ID of your modal element in the HTML
+        console.log(agentName)
         const modalElement = $("#modal-xl");
         modalElement.find("modal-body").text(`Agent ID: ${agentId}`);
         modalElement.modal("show");
-        loadAgentURLTable(agentId);
+        loadAgentURLTable(agentId, agentName);
       }
 
 
