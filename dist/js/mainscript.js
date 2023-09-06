@@ -436,9 +436,9 @@
         urlTableContainer.firstChild.remove();
     }
 
-    while (urlTableContainerm.firstChild) {
-        urlTableContainerm.firstChild.remove();
-    }
+        while (urlTableContainerm.firstChild) {
+            urlTableContainerm.firstChild.remove();
+        }
     
     // Load agent-specific URL table
     const agentURLsRef = agentsRef.child(agentId).child("tokens");
@@ -513,14 +513,14 @@
 
             urlCell.textContent = url.linkWithToken;
             candidateNameCell.textContent = url.candidateName;
-            tokenStatusCell.textContent = url.tokenStatus;
             linkStatusCell.textContent = url.linkStatus;
+            tokenStatusCell.textContent = url.tokenStatus;
             tokenCreatedAtCell.textContent = url.createdAt;
 
             urlRow.appendChild(urlCell);
             urlRow.appendChild(candidateNameCell);
-            urlRow.appendChild(tokenStatusCell);
             urlRow.appendChild(linkStatusCell);
+            urlRow.appendChild(tokenStatusCell);
             urlRow.appendChild(tokenCreatedAtCell);
 
             urlRowm.appendChild(candidateNameCell);
@@ -554,11 +554,7 @@
 
             // Load agent insights and charts
             const agentInsightsContainer = document.getElementById("agentInsights");
-            agentInsightsContainer.innerHTML = `
-              Insights and charts for Agent: <span style="color: red;">${agentName}</span>
-              last generated a token at: <span style="color: green;">${lastTokenGen}</span>
-            `;
-            // agentInsightsContainer.textContent = `Insights and charts for Agent:  ${agentName}` +  `       last generated a token at: ${lastTokenGen}` ;
+            agentInsightsContainer.textContent = `Insights and charts for Agent:  ${agentName}` +  `       last generated a token at: ${lastTokenGen}` ;
             
             console.log(`Last Token ID: ${tokenId}`);
             console.log(`Timestamp: ${lastTokenGen}`);
@@ -581,7 +577,6 @@
     }
 
     
-
 
     // // Firebase Realtime Database reference
     // const agentsRef = firebase.database().ref("agents");
