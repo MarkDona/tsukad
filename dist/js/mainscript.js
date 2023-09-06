@@ -365,7 +365,6 @@
     // Load URL table for a specific agent
     function loadAgentURLTable(agentId, agentName) {
     const urlTableContainer = document.getElementById("urlTable");
-    const urlTableContainerd = document.getElementById("urlTabled");
     const urlTableContainerm = document.getElementById("urlTablem");
 
 
@@ -437,10 +436,6 @@
         urlTableContainer.firstChild.remove();
     }
 
-    while (urlTableContainerd.firstChild) {
-        urlTableContainerd.firstChild.remove();
-    }
-
     while (urlTableContainerm.firstChild) {
         urlTableContainerm.firstChild.remove();
     }
@@ -453,13 +448,10 @@
 
         // Generate URL table
         const urlTable = document.createElement("table");
-        const urlTabled = document.createElement("table");
         const urlTablem = document.createElement("table");
         urlTable.setAttribute('class','table table-gray text-black');
-        urlTabled.setAttribute('class','table table-gray text-black');
         urlTablem.setAttribute('class','table table-gray text-black');
         const headerRow = document.createElement("tr");
-        const headerRowd = document.createElement("tr");
         const headerRowm = document.createElement("tr");
         const headerCell1 = document.createElement("th");
         const headerCell2 = document.createElement("th");
@@ -479,15 +471,10 @@
         headerRow.appendChild(headerCell4);
         headerRow.appendChild(headerCell5);
 
-        headerRowd.appendChild(headerCell1);
-        headerRowd.appendChild(headerCell4);
-        headerRowd.appendChild(headerCell5);
-
         headerRowm.appendChild(headerCell2);
         headerRowm.appendChild(headerCell4);
 
         urlTable.appendChild(headerRow);
-        urlTabled.appendChild(headerRowd);
         urlTablem.appendChild(headerRowm);
 
         totalTokens = 0;
@@ -517,7 +504,6 @@
         }
 
             const urlRow = document.createElement("tr");
-            const urlRowd = document.createElement("tr");
             const urlRowm = document.createElement("tr");
             const urlCell = document.createElement("td");
             const candidateNameCell = document.createElement("td");
@@ -537,21 +523,15 @@
             urlRow.appendChild(linkStatusCell);
             urlRow.appendChild(tokenCreatedAtCell);
 
-            urlRowd.appendChild(urlCell);
-            urlRowd.appendChild(tokenStatusCell);
-            urlRowd.appendChild(tokenCreatedAtCell);
-
             urlRowm.appendChild(candidateNameCell);
             urlRowm.appendChild(tokenStatusCell);
 
             urlTable.appendChild(urlRow);
-            urlTabled.appendChild(urlRowd);
             urlTablem.appendChild(urlRowm);
 
         });
         
         urlTableContainer.appendChild(urlTable);
-        urlTableContainerd.appendChild(urlTabled);
         urlTableContainerm.appendChild(urlTablem);
         })
         .catch(error => {
