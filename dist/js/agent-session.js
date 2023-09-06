@@ -1,5 +1,5 @@
 // Set the time (in milliseconds) after which the user will be automatically logged out
-var logoutTime = 10 * 60 * 1000; //20 minutes
+var logoutTime = 5 * 60 * 1000; //20 minutes
 
 // Start the logout timer
 var logoutTimer = setTimeout(logout, logoutTime);
