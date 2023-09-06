@@ -461,6 +461,10 @@
         const headerCell4 = document.createElement("th");
         const headerCell5 = document.createElement("th");
 
+        const headerCell2m = document.createElement("th");
+        const headerCell4m = document.createElement("th");
+        
+
         headerCell1.textContent = "Link URL";
         headerCell2.textContent = "Candidate Name";
         headerCell3.textContent = "Link Status";
@@ -473,8 +477,8 @@
         headerRow.appendChild(headerCell4);
         headerRow.appendChild(headerCell5);
 
-        headerRowm.appendChild(headerCell2);
-        headerRowm.appendChild(headerCell4);
+        headerRowm.appendChild(headerCell2m);
+        headerRowm.appendChild(headerCell4m);
             
         urlTable.appendChild(headerRow);
         urlTablem.appendChild(headerRowm);
@@ -512,6 +516,9 @@
             const linkStatusCell = document.createElement("td");
             const tokenStatusCell = document.createElement("td");
             const tokenCreatedAtCell = document.createElement("td");
+            
+            const candidateNameCellm = document.createElement("td");
+            const tokenStatusCellm = document.createElement("td");
 
             urlCell.textContent = url.linkWithToken;
             candidateNameCell.textContent = url.candidateName;
@@ -519,14 +526,17 @@
             tokenStatusCell.textContent = url.tokenStatus;
             tokenCreatedAtCell.textContent = url.createdAt;
 
+            candidateNameCellm.textContent = url.candidateName;
+            tokenStatusCellm.textContent = url.tokenStatus;
+
             urlRow.appendChild(urlCell);
             urlRow.appendChild(candidateNameCell);
             urlRow.appendChild(linkStatusCell);
             urlRow.appendChild(tokenStatusCell);
             urlRow.appendChild(tokenCreatedAtCell);
 
-            urlRowm.appendChild(candidateNameCell);
-            urlRowm.appendChild(tokenStatusCell);
+            urlRowm.appendChild(candidateNameCellm);
+            urlRowm.appendChild(tokenStatusCellm);
             
             urlTable.appendChild(urlRow);
             urlTablem.appendChild(urlRowm);
