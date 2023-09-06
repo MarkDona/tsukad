@@ -557,8 +557,10 @@
             // agentInsightsContainer.textContent = `Insights and charts for Agent:  ${agentName}` +  `       last generated a token at: ${lastTokenGen}` ;
 
             const agentInsightsContainer = document.getElementById("agentInsights");
-            agentInsightsContainer.innerHTML = `Insights and charts for Agent: <span style="color: red;">${agentName}</span> last generated a token at: <span style="color: green;">${lastTokenGen}</span>`;
-
+            agentInsightsContainer.innerHTML = `
+              Insights and charts for Agent: <span style="color: red;">${agentName}</span>
+              last generated a token at: <span style="color: green;">${lastTokenGen}</span>
+            `;
                 
             console.log(`Last Token ID: ${tokenId}`);
             console.log(`Timestamp: ${lastTokenGen}`);
