@@ -32,14 +32,19 @@
         // Initialize arrays to store agents and staff data
         const agents = [];
         const staff = [];
+        const agentm = [];
+        const staffm = [];
 
         // Group agents based on their roles (agent or staff)
         Object.entries(agentsData).forEach(([agentId, agent]) => {
             const agentInfo = [agentId, agent.agentName, agent.role];
+            const agentInfoM = [agentId, agent.agentName, agent.role];
             if (agent.role === "agent") {
             agents.push(agentInfo);
+            agentm.push(agentInfoM);
             } else if (agent.role === "staff") {
             staff.push(agentInfo);
+            staffm.push(agentInfoM);
             }
         });
 
@@ -48,18 +53,35 @@
             data: agents,
             "responsive": true, "lengthChange": false, "autoWidth": false,
         })
+            
+        const agentsTableM = $('#agent_mobile').DataTable({
+            data: agentm,
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+        });
+        agentsTableM.column(0).visible(false);
 
         // Initialize DataTables for staff table
         const staffTable = $('#staff').DataTable({
             data: staff,
             "responsive": true, "lengthChange": false, "autoWidth": false,
         });
-
+        const staffTableM = $('#staff_mobile').DataTable({
+            data: staffm,
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+        });
+        staffTableM.column(0).visible(false);
+            
         // Add click event listener to agents table cells to show modal with agent ID
         $('#agent tbody').on('click', 'td', function () {
             const agentId = agentsTable.row($(this).closest('tr')).data()[0];
             const agentName = agentsTable.row($(this).closest('tr')).data()[1];
             showModal(agentId, agentName);
+        });
+        
+        $('#agent_mobile tbody').on('click', 'td', function () {
+            const agentId = agentsTableM.row($(this).closest('tr')).data()[0];
+            const agentName = agentsTableM.row($(this).closest('tr')).data()[1];
+            showMeModal(agentId, agentName);
         });
 
         // Add click event listener to staff table cells to show modal with agent ID
@@ -68,7 +90,13 @@
             const agentName = staffTable.row($(this).closest('tr')).data()[1];
             showModal(agentId, agentName);
         });
-
+        
+        $('#staff_mobile tbody').on('click', 'td', function () {
+            const agentId = staffTableM.row($(this).closest('tr')).data()[0];
+            const agentName = staffTableM.row($(this).closest('tr')).data()[1];
+            showMeModal(agentId, agentName);
+        });
+            
         })
         .catch(error => {
             console.log("Error retrieving agents from Firebase:", error);
@@ -82,6 +110,14 @@
         modalElement.find("modal-body").text(`Agent ID: ${agentId}`);
         modalElement.modal("show");
         loadAgentURLTable(agentId, agentName);
+      }
+    
+    function showMeModal(agentId, agentName) {
+        // Replace "myModal" with the ID of your modal element in the HTML
+        const modalElement = $("#modal-xl");
+        modalElement.find("modal-body").text(`Agent ID: ${agentId}`);
+        modalElement.modal("show");
+        loadAgentURLTable(agentId);
       }
 
 
