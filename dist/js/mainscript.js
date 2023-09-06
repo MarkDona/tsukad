@@ -38,13 +38,12 @@
         // Group agents based on their roles (agent or staff)
         Object.entries(agentsData).forEach(([agentId, agent]) => {
             const agentInfo = [agentId, agent.agentName, agent.role];
-            const agentInfoM = [agentId, agent.agentName, agent.role];
             if (agent.role === "agent") {
             agents.push(agentInfo);
-            agentm.push(agentInfoM);
+            agentm.push(agentInfo);
             } else if (agent.role === "staff") {
             staff.push(agentInfo);
-            staffm.push(agentInfoM);
+            staffm.push(agentInfo);
             }
         });
 
@@ -57,7 +56,8 @@
         const agentsTableM = $('#agent_mobile').DataTable({
             data: agentm,
             "responsive": true, "lengthChange": false, "autoWidth": false,
-        });
+        })
+            
         agentsTableM.column(0).visible(false);
 
         // Initialize DataTables for staff table
@@ -68,7 +68,8 @@
         const staffTableM = $('#staff_mobile').DataTable({
             data: staffm,
             "responsive": true, "lengthChange": false, "autoWidth": false,
-        });
+        })
+            
         staffTableM.column(0).visible(false);
             
         // Add click event listener to agents table cells to show modal with agent ID
