@@ -471,6 +471,9 @@
         headerCell4.textContent = "Token Status";
         headerCell5.textContent = "Created At";
 
+        headerCell2m.textContent = "Candidate Name";
+        headerCell4m.textContent = "Token Status";
+            
         headerRow.appendChild(headerCell1);
         headerRow.appendChild(headerCell2);
         headerRow.appendChild(headerCell3);
