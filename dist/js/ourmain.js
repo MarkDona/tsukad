@@ -42,11 +42,11 @@ function createPieChart() {
         // Loop through each agent and sum up token statuses
         Object.values(agents).forEach(agent => {
             Object.values(agent.tokens || {}).forEach(token => {
-            if (token.tokenStatus === "verified") {
+            if (token.tokenStatus === "Submitted") {
                 totalVerified++;
-            } else if (token.tokenStatus === "Active") {
+            } else if (token.tokenStatus === "Unopened") {
                 totalActive++;
-            } else if (token.tokenStatus === "unverified") {
+            } else if (token.tokenStatus === "Opened") {
                 totalUnverified++;
             }
             });
@@ -63,7 +63,7 @@ function createPieChart() {
         myPieChart = new Chart("pie", {
           type: "pie",
           data: {
-            labels: ["Active: " + activePercentage + "%", "Unverified: " + unverifiedPercentage + "%", "Verified: " + verifiedPercentage + "%"],
+            labels: ["Unopened: " + activePercentage + "%", "Opened: " + unverifiedPercentage + "%", "Submitted: " + verifiedPercentage + "%"],
             datasets: [{
               backgroundColor: barColors,
               data: [activePercentage, unverifiedPercentage, verifiedPercentage]
@@ -159,13 +159,13 @@ function countTokensByAgents() {
 
         document.getElementById("total-Tokens").innerHTML = "Total Tokens Generated: " + totalTokens;
 
-        if (token.tokenStatus === "unverified") {
+        if (token.tokenStatus === "Opened") {
           totalUnverifiedTokens++;
-          document.getElementById("total-Unverified-Tokens").innerHTML = "Total Unverified Tokens:" + totalUnverifiedTokens;
+          document.getElementById("total-Unverified-Tokens").innerHTML = "Total Opened Tokens:" + totalUnverifiedTokens;
         }
-        else if (token.tokenStatus === "Active") {
+        else if (token.tokenStatus === "Unopened") {
           totalActiveTokens++;
-          document.getElementById("total-Active-Tokens").innerHTML = "Total Active Tokens:" + totalActiveTokens;
+          document.getElementById("total-Active-Tokens").innerHTML = "Total Unopened Tokens:" + totalActiveTokens;
         }
       }
     }
