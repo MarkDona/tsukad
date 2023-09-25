@@ -231,7 +231,7 @@
     const chartData = {
         labels: [],
         datasets: [{
-        label: 'Verified Token Status',
+        label: 'Submitted Token Status',
         data: [],
         backgroundColor: 'rgba(75, 192, 192, 0.5)',
         borderColor: 'rgba(75, 192, 192, 1)',
@@ -316,11 +316,11 @@
         let verifiedCount = 0;
 
         Object.values(agentData.tokens || {}).forEach(token => {
-            if (token.tokenStatus === "Active") {
+            if (token.tokenStatus === "Unopened") {
             activeCount++;
-            } else if (token.tokenStatus === "unverified") {
+            } else if (token.tokenStatus === "Opened") {
             unverifiedCount++;
-            } else if (token.tokenStatus === "verified") {
+            } else if (token.tokenStatus === "Submitted") {
             verifiedCount++;
             }
         });
@@ -332,7 +332,7 @@
 
         // Create the data array for the chart
         const chartData = {
-            labels: ["Active Links: " + activePercentage + "%", "Links Accessed: " + unverifiedPercentage + "%", "Forms Submitted: " + verifiedPercentage + "%", "Generated Count: " + generatedCount],
+            labels: ["Unopened Links: " + activePercentage + "%", "Links Accessed: " + unverifiedPercentage + "%", "Forms Submitted: " + verifiedPercentage + "%", "Generated Count: " + generatedCount],
             datasets: [{
             data: [activePercentage, unverifiedPercentage, verifiedPercentage],
             backgroundColor: [
@@ -384,7 +384,7 @@
           let verifiedFormsSubmitted = 0;
 
           Object.values(agent.tokens || {}).forEach(token => {
-            if (token.tokenStatus === "verified") {
+            if (token.tokenStatus === "Submitted") {
               verifiedFormsSubmitted++;
               totalFormsSubmitted++;
               //console.log(verifiedFormsSubmitted);
@@ -503,7 +503,7 @@
             totalTokens++;        
             document.getElementById("total-Tokens").innerHTML = totalTokens;      
                                
-            if (url.tokenStatus === "verified"){
+            if (url.tokenStatus === "Submitted"){
 
                 verifiedTokens++;
                 document.getElementById("total-Active-Tokens").innerHTML = verifiedTokens;
