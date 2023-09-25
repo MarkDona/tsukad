@@ -259,7 +259,7 @@
             // Loop through each token and count verified tokens in the current week
             Object.values(agentData.tokens || {}).forEach(token => {
             const tokenDate = new Date(token.createdAt);
-            if (token.tokenStatus === "verified" && tokenDate >= startDateOfWeek && tokenDate < endDateOfWeek) {
+            if (token.tokenStatus === "Submitted" && tokenDate >= startDateOfWeek && tokenDate < endDateOfWeek) {
                 verifiedCount++;
             }
             });
@@ -332,7 +332,7 @@
 
         // Create the data array for the chart
         const chartData = {
-            labels: ["Unopened Links: " + activePercentage + "%", "Links Accessed: " + unverifiedPercentage + "%", "Forms Submitted: " + verifiedPercentage + "%", "Generated Count: " + generatedCount],
+            labels: ["Unopened Links: " + activePercentage + "%", "Links Opened: " + unverifiedPercentage + "%", "Forms Submitted: " + verifiedPercentage + "%", "Generated Count: " + generatedCount],
             datasets: [{
             data: [activePercentage, unverifiedPercentage, verifiedPercentage],
             backgroundColor: [
